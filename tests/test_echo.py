@@ -7,7 +7,7 @@ Students MUST EDIT this module, to add more tests to run
 against the 'echo.py' program.
 """
 
-__author__ = "???"
+__author__ = "Gabrielle"
 
 import sys
 import importlib
@@ -69,13 +69,13 @@ class TestEcho(unittest.TestCase):
     # - If you enable one option as true, are the rest false?
     #
     def test_parser_namespace(self):
-        # your code here
-        self.fail()  # replace me
+        self.assertNotEqual(self.module.__author__, '???')  # replace me
 
     def test_echo(self):
         """Check if main() function prints anything at all"""
         module_to_test = self.module.__file__
         run_capture(module_to_test)
+        
 
     def test_simple_echo(self):
         """Check if main actually echoes an input string"""
@@ -102,8 +102,11 @@ class TestEcho(unittest.TestCase):
         self.fail()  # replace me
 
     def test_upper_short(self):
-        # your code here
-        self.fail()  # replace me
+        args = ["-u", "hello world"] 
+        output = run_capture(self.module.__file__, args)       
+        # assert output, "The program did not print anything."
+        self.assertEqual(output[0], 'HELLO WORLD')
+
 
     def test_upper_long(self):
         # your code here
@@ -122,8 +125,13 @@ class TestEcho(unittest.TestCase):
         self.fail()  # replace me
 
     def test_help_message(self):
-        # your code here
-        self.fail()  # replace me
+        process = subprocess.Popen(
+            ['python', './echo.py', '-h'], 
+            stdout=subprocess.PIPE)
+        stdout, _ = process.communicate()
+        with open('USAGE') as f:
+            usage = f.read()
+        self.assertEqual(stdout.decode(), usage)
 
     #
     # Students: add a flake8 test here.
@@ -138,8 +146,7 @@ class TestEcho(unittest.TestCase):
     # You may borrow some test code from previous assignments!
     #
     def test_author(self):
-        # your code here
-        self.fail()  # replace me
+        self.assertNotEqual(self.module.__author__, '???')  # replace me
 
 
 if __name__ == '__main__':
