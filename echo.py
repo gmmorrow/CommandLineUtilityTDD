@@ -9,7 +9,6 @@ import sys
 import argparse
 
 
-
 def create_parser():
     """Returns an instance of argparse.ArgumentParser"""
     paser = argparse.ArgumentParser(
@@ -30,11 +29,14 @@ def create_parser():
 def text_uppercase(text):
     return text.upper()
 
+
 def text_lowercase(text):
     return text.lower()
 
+
 def text_title(text):
     return text.title()
+
 
 def main(args):
     """Implementation of echo"""
@@ -47,10 +49,10 @@ def main(args):
     text = ns.text
     if ns.upper:
         text = text_uppercase(text)
-    
+
     if ns.lower:
         text = text_lowercase(text)
-    
+
     if ns.title:
         text = text_title(text)
     print(text)

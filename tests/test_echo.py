@@ -156,7 +156,7 @@ class TestEcho(unittest.TestCase):
     def test_flake8(self):
         # """Checking for PEP8/flake8 compliance"""
         result = subprocess.run(['flake8', self.module.__file__])
-        self.assertEqual(result.returncode, 1)
+        self.assertEqual(result.returncode, 0)
 
     #
     # Students: add an __author__ test here.
