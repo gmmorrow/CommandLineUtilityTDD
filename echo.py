@@ -8,19 +8,6 @@ __author__ = "Gabrielle"
 import sys
 import argparse
 
-def text_upper(text):
-    # Coverts text to uppercase
-    return text.upper()
-
-
-def text_lower(text):
-    # Coverts text to lowercase
-    return text.lower()
-
-
-def text_title(text):
-    # Capitalize first letter of word
-    return text.title()
 
 
 def create_parser():
@@ -40,6 +27,15 @@ def create_parser():
     return paser
 
 
+def text_uppercase(text):
+    return text.upper()
+
+def text_lowercase(text):
+    return text.lower()
+
+def text_title(text):
+    return text.title()
+
 def main(args):
     """Implementation of echo"""
     parser = create_parser()
@@ -49,19 +45,12 @@ def main(args):
         sys.exit(1)
 
     text = ns.text
-    # If the namespace is -u
-    #   convert text to uppercase
-    # Ex: python echo.py -u 'hello'
     if ns.upper:
-        text = text_upper(text)
-    # If the namespace is -l
-    #   convert text to uppercase
-    # Ex: python echo.py -l 'hello'
+        text = text_uppercase(text)
+    
     if ns.lower:
-        text = text_lower(text)
-    # If the namespace is -t
-    #   convert text to uppercase
-    # Ex: python echo.py -t 'hello'
+        text = text_lowercase(text)
+    
     if ns.title:
         text = text_title(text)
     print(text)
